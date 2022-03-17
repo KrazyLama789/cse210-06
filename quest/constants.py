@@ -89,20 +89,13 @@ LEVEL_FORMAT = "LEVEL: {}"
 LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
 
-# BALL
-BALL_GROUP = "balls"
-BALL_IMAGE = "quest/assets/images/000.png"
-BALL_WIDTH = 28
-BALL_HEIGHT = 28
-BALL_VELOCITY = 6
-
-# RACKET
-RACKET_GROUP = "rackets"
-RACKET_IMAGES = [f"quest/assets/images/{n:03}.png" for n in range(100, 103)]
-RACKET_WIDTH = 106
-RACKET_HEIGHT = 28
-RACKET_RATE = 6
-RACKET_VELOCITY = 7
+# ADVENTURER
+ADVENTURER_GROUP = "adventurers"
+ADVENTURER_IMAGES = [f"quest/assets/images/{n:03}.png" for n in range(100, 103)]
+ADVENTURER_WIDTH = 106
+ADVENTURER_HEIGHT = 28
+ADVENTURER_RATE = 6
+ADVENTURER_VELOCITY = 7
 
 # BRICK
 BRICK_GROUP = "bricks"
