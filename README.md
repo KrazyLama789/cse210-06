@@ -43,7 +43,7 @@ script: #Mary
         tresure chest
 
 services: #Kosei
-    movement controlls (left and right)
-    interation (space bar)
-    choose action (1 2 3 4)
+    - movement controlls (left and right)
+    - interation (space bar)
+    - choose action (1 2 3 4)
 
