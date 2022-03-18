@@ -43,7 +43,7 @@ Final Project design
 when in combat:
 - display mob stats
 - choose an action
-- update player stuts
+- update player stats
 - combat sequence
 - combat resolution
 ```
