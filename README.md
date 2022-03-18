@@ -35,7 +35,7 @@ Final Project design
 - display player stats
 - walk from one screen to the next
 - start combat when entering a room with a mob
-- update player stuts
+- update player stats
 - combat sequence
 - combat resolution
 
@@ -57,7 +57,7 @@ Advanced:
 
 ---
 ## services: #Kosei
-- movement controlls (left and right)
+- movement controls (left and right)
 - interaction (space bar)
 - choose action (1 2 3 4)
 
