@@ -5,7 +5,7 @@ Final Project design
 ---
 ## casting:
 
-### classes: #Jennifer
+### actors: #Jennifer
 
 - adventurer
 - boss
