@@ -104,20 +104,6 @@ LAYER_3 = "quest/assets/images/redtree.png"
 LAYER_4 = "quest/assets/images/redtown.png"
 LAYER_5 = "quest/assets/images/redcloud.png"
 
-# BRICK
-BRICK_GROUP = "bricks"
-BRICK_IMAGES = {
-    "b": [f"quest/assets/images/{i:03}.png" for i in range(10,19)],
-    "g": [f"quest/assets/images/{i:03}.png" for i in range(20,29)],
-    "p": [f"quest/assets/images/{i:03}.png" for i in range(30,39)],
-    "y": [f"quest/assets/images/{i:03}.png" for i in range(40,49)]
-}
-BRICK_WIDTH = 80
-BRICK_HEIGHT = 28
-BRICK_DELAY = 0.5
-BRICK_RATE = 4
-BRICK_POINTS = 50
-
 # DIALOG
 DIALOG_GROUP = "dialogs"
 ENTER_TO_START = "PRESS ENTER TO START"
