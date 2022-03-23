@@ -61,3 +61,13 @@ Advanced:
 - interaction (space bar)
 - choose action (1 2 3 4)
 
+## sources:
+
+Epic Boss Battle by Juhani Junkala | https://soundcloud.com/juhanijunkala
+Music promoted by https://www.free-stock-music.com
+Creative Commons Attribution 3.0 Unported License
+https://creativecommons.org/licenses/by/3.0/deed.en_US
+
+Sound Bites Provided by https://mixkit.co/free-stock-music
+
+Font: https://vrtxrry.itch.io/dungeonfont
