@@ -31,17 +31,17 @@ Final Project design
 ## script: #Mary
 
 - display adventurer
-- display mob
+- display boss
 - display player stats
 - walk from one screen to the next
-- start combat when entering a room with a mob
+- start combat when entering a room with a boss
 - update player stats
 - combat sequence
 - combat resolution
 
 ```
 when in combat:
-- display mob stats
+- display boss stats
 - choose an action
 - update player stats
 - combat sequence
