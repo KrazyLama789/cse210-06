@@ -97,6 +97,13 @@ ADVENTURER_HEIGHT = 100
 ADVENTURER_RATE = 6
 ADVENTURER_VELOCITY = 1
 
+#BG
+LAYER_1 = "quest/assets/images/redsky.png"
+LAYER_2 = "quest/assets/images/redmountain.png"
+LAYER_3 = "quest/assets/images/redtree.png"
+LAYER_4 = "quest/assets/images/redtown.png"
+LAYER_5 = "quest/assets/images/redcloud.png"
+
 # BRICK
 BRICK_GROUP = "bricks"
 BRICK_IMAGES = {
