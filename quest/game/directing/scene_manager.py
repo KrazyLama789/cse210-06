@@ -11,9 +11,9 @@ from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
-from game.scripting.collide_borders_action import CollideBordersAction
-from game.scripting.collide_brick_action import CollideBrickAction
-from game.scripting.collide_adventurer_action import CollideAdventurerAction
+#from game.scripting.collide_borders_action import CollideBordersAction
+#from game.scripting.collide_brick_action import CollideBrickAction
+#from game.scripting.collide_adventurer_action import CollideAdventurerAction
 from game.scripting.control_adventurer_action import ControlAdventurerAction
 from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
@@ -43,9 +43,9 @@ class SceneManager:
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
 
     CHECK_OVER_ACTION = CheckOverAction()
-    COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_ADVENTURER_ACTION = CollideAdventurerAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    #COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    #COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    #COLLIDE_ADVENTURER_ACTION = CollideAdventurerAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
@@ -244,8 +244,8 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_ADVENTURER_ACTION)
+        #script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
+        #script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
+        #script.add_action(UPDATE, self.COLLIDE_ADVENTURER_ACTION)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)
