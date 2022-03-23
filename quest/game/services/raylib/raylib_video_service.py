@@ -113,7 +113,7 @@ class RaylibVideoService(VideoService):
     def _get_filepaths(self, directory, filter):
         filepaths = []
         for file in os.listdir(directory):
-            filename = filename = directory + '/' + file
+            filename = directory + '/' + file
             extension = pathlib.Path(filename).suffix.lower()
             if extension in filter:
                 filename = str(pathlib.Path(filename))

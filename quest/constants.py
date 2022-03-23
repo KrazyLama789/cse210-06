@@ -21,7 +21,7 @@ FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
 # FONT
-FONT_FILE = "quest/assets/fonts/zorque.otf"
+FONT_FILE = "quest/assets/fonts/DungeonFont.otf"
 FONT_SMALL = 32
 FONT_LARGE = 48
 
@@ -91,11 +91,18 @@ SCORE_FORMAT = "SCORE: {}"
 
 # ADVENTURER
 ADVENTURER_GROUP = "adventurers"
-ADVENTURER_IMAGES = [f"quest/assets/images/{n:03}.png" for n in range(100, 103)]
+ADVENTURER_IMAGES = [f"quest/assets/images/{n:03}.png" for n in range(101, 113)]
 ADVENTURER_WIDTH = 106
-ADVENTURER_HEIGHT = 28
+ADVENTURER_HEIGHT = 100
 ADVENTURER_RATE = 6
-ADVENTURER_VELOCITY = 7
+ADVENTURER_VELOCITY = 1
+
+#BG
+LAYER_1 = "quest/assets/images/redsky.png"
+LAYER_2 = "quest/assets/images/redmountain.png"
+LAYER_3 = "quest/assets/images/redtree.png"
+LAYER_4 = "quest/assets/images/redtown.png"
+LAYER_5 = "quest/assets/images/redcloud.png"
 
 # BRICK
 BRICK_GROUP = "bricks"
@@ -116,3 +123,7 @@ DIALOG_GROUP = "dialogs"
 ENTER_TO_START = "PRESS ENTER TO START"
 PREP_TO_LAUNCH = "PREPARING TO LAUNCH"
 WAS_GOOD_GAME = "GAME OVER"
+
+BOSS_LINE_1 = "Fear the Dark"
+BOSS_LINE_2 = "You Will Obey"
+BOSS_LINE_3 = "I am your Master"
