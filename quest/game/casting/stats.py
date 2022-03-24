@@ -39,13 +39,21 @@ class Stats(Actor):
         """
         return self._level
 
-    def get_hp(self):
-        """Adds hit points.
+    def get_current_hp(self):
+        """Get current hit points.
 
         Returns:
             A number representing the amount of hit points.
         """
-        return self._hp
+        return self._current_hp
+    
+    def get_max_hp(self):
+        """Git max hit points.
+
+        Returns:
+            A number representing the amount of hit points.
+        """
+        return self._max_hp
   
     def get_xp(self):
         """Gets the xp.
