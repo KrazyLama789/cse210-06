@@ -2,7 +2,8 @@
 # from game.casting.sound import Sound
 # from game.scripting.action import Action
 
-# # CHANGE BALL TO ADVENTURER
+# # Adapt ball colliding with borders to adventurer
+
 # class CollideBordersAction(Action):
 
 #     def __init__(self, physics_service, audio_service):
