@@ -108,11 +108,13 @@ BOSS_RATE = 6
 BOSS_VELOCITY = 0
 
 #BACKGROUND
-LAYER_1 = "quest/assets/images/redsky.png"
-LAYER_2 = "quest/assets/images/redmountain.png"
-LAYER_3 = "quest/assets/images/redtree.png"
-LAYER_4 = "quest/assets/images/redtown.png"
-LAYER_5 = "quest/assets/images/redcloud.png"
+BACKGROUND_GROUP = "background"
+BACKGROUND_IMAGES = {
+    0 : "quest/assets/images/redsky.png",
+    1 : "quest/assets/images/redmountain.png",
+    2 : "quest/assets/images/redtree.png",
+    3 : "quest/assets/images/redtown.png",
+    4 : "quest/assets/images/redcloud.png"}
 
 # DIALOG
 DIALOG_GROUP = "dialogs"
