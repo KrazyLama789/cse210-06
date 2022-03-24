@@ -10,6 +10,7 @@ from game.casting.boss import Boss
 from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
+from game.scripting.collide_boss_action import CollideBossAction
 from game.scripting.control_adventurer_action import ControlAdventurerAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
@@ -33,11 +34,15 @@ from game.services.raylib.raylib_video_service import RaylibVideoService
 class SceneManager:
     """The person in charge of setting up the cast and script for each scene."""
     
+    
     AUDIO_SERVICE = RaylibAudioService()
     KEYBOARD_SERVICE = RaylibKeyboardService()
     PHYSICS_SERVICE = RaylibPhysicsService()
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
+    
+    
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
+    COLLIDE_BOSS_ACTION = CollideBossAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_ADVENTURER_ACTION = DrawAdventurerAction(VIDEO_SERVICE)
@@ -215,4 +220,5 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_BOSS_ACTION)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
