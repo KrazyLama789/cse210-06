@@ -149,14 +149,14 @@ class SceneManager:
     def _add_hp(self, cast):
         cast.clear_actors(HP_GROUP)
         text = Text(HP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
-        position = Point(HUD_MARGIN, HUD_MARGIN * 3)
+        position = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL)
         label = Label(text, position)
         cast.add_actor(HP_GROUP, label)
 
     def _add_xp(self, cast):
         cast.clear_actors(XP_GROUP)
         text = Text(XP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
-        position = Point(HUD_MARGIN, HUD_MARGIN * 5)
+        position = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL * 2)
         label = Label(text, position)
         cast.add_actor(XP_GROUP, label)
 
