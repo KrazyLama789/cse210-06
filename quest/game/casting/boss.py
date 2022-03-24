@@ -3,8 +3,8 @@ from game.casting.actor import Actor
 from game.casting.point import Point
 
 
-class Adventurer(Actor):
-    """Adventurer."""
+class Boss(Actor):
+    """Boss."""
     
     def __init__(self, body, animation, debug = False):
         """Constructs a new Bat.

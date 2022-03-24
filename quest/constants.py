@@ -6,13 +6,15 @@ from game.casting.color import Color
 
 # GAME
 GAME_NAME = "Quest"
-FRAME_RATE = 60
+FRAME_RATE = 120
 
 # SCREEN
 SCREEN_WIDTH = 1040
 SCREEN_HEIGHT = 680
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
+LEFT_CENTER_X = SCREEN_WIDTH / 3
+RIGHT_CENTER_X = LEFT_CENTER_X * 2
 
 # FIELD
 FIELD_TOP = 60
@@ -97,7 +99,15 @@ ADVENTURER_HEIGHT = 250
 ADVENTURER_RATE = 6
 ADVENTURER_VELOCITY = 1
 
-#BG
+# BOSS
+BOSS_GROUP = "boss"
+BOSS_IMAGES = ["quest/assets/images/left101.png"]
+BOSS_WIDTH = 106
+BOSS_HEIGHT = 100
+BOSS_RATE = 6
+BOSS_VELOCITY = 0
+
+#BACKGROUND
 LAYER_1 = "quest/assets/images/redsky.png"
 LAYER_2 = "quest/assets/images/redmountain.png"
 LAYER_3 = "quest/assets/images/redtree.png"
