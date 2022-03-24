@@ -18,9 +18,9 @@ class MoveAdventurerAction(Action):
         position = position.add(velocity)
 
         if x < 0:
+            position = Point(SCREEN_WIDTH, position.get_y())
+        elif x > (SCREEN_WIDTH):
             position = Point(0, position.get_y())
-        elif x > (SCREEN_WIDTH - ADVENTURER_WIDTH):
-            position = Point(SCREEN_WIDTH - ADVENTURER_WIDTH, position.get_y())
             
         body.set_position(position)
         
