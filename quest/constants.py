@@ -6,7 +6,7 @@ from game.casting.color import Color
 
 # GAME
 GAME_NAME = "Quest"
-FRAME_RATE = 60
+FRAME_RATE = 120
 
 # SCREEN
 SCREEN_WIDTH = 1040

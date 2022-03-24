@@ -215,3 +215,4 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
+        script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
