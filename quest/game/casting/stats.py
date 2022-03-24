@@ -9,20 +9,27 @@ class Stats(Actor):
         """Constructs a new Stats."""
         super().__init__(debug)
         self._level = 1
-        self._hp = DEFAULT_HP
+        self._max_hp = DEFAULT_HP
+        self._current_hp = DEFAULT_HP
         self._xp = 0
 
-    def add_life(self):
-        """Adds one life."""
-        self._hp += 3
-
-    def add_points(self, points):
-        """Adds the given points to the xp.
+    def add_max_hp(self):
+        """Increases maximum hit xp."""
+        self._max_hp += 3
+        self._current_hp = self._max_hp
+        
+    def add_hp(self):
+        """Adds to current hit xp."""
+        if self._current_hp < self._max_hp:
+            self._current_hp += 1
+        
+    def add_xp(self, xp):
+        """Adds the given xp to the total experience points.
         
         Args:
-            points: A number representing the points to add.
+            xp: A number representing the experience to add.
         """
-        self._xp += points
+        self._xp += xp
 
     def get_level(self):
         """Gets the level.
