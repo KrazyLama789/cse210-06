@@ -77,8 +77,8 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        self._add_lives(cast)
-        self._add_score(cast)
+        self._add_hp(cast)
+        self._add_xp(cast)
         self._add_adventurer(cast)
         self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
@@ -146,19 +146,19 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(LEVEL_GROUP, label)
 
-    def _add_lives(self, cast):
-        cast.clear_actors(LIVES_GROUP)
-        text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
-        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
+    def _add_hp(self, cast):
+        cast.clear_actors(HP_GROUP)
+        text = Text(HP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
+        position = Point(HUD_MARGIN, HUD_MARGIN * 3)
         label = Label(text, position)
-        cast.add_actor(LIVES_GROUP, label)
+        cast.add_actor(HP_GROUP, label)
 
-    def _add_score(self, cast):
-        cast.clear_actors(SCORE_GROUP)
-        text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        position = Point(CENTER_X, HUD_MARGIN)
+    def _add_xp(self, cast):
+        cast.clear_actors(XP_GROUP)
+        text = Text(XP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
+        position = Point(HUD_MARGIN, HUD_MARGIN * 5)
         label = Label(text, position)
-        cast.add_actor(SCORE_GROUP, label)
+        cast.add_actor(XP_GROUP, label)
 
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)
