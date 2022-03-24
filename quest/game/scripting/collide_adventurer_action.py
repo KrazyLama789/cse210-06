@@ -2,6 +2,7 @@
 # from game.casting.sound import Sound
 # from game.scripting.action import Action
 
+# Adapt to adventurer and boss colliding
 
 # class CollideAdventurerAction(Action):
 

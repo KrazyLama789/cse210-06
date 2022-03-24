@@ -4,10 +4,10 @@ from game.casting.point import Point
 
 
 class Adventurer(Actor):
-    """Adventurer."""
+    """A player who is represented as a Knight."""
     
     def __init__(self, body, animation, debug = False):
-        """Constructs a new Bat.
+        """Constructs a player.
         
         Args:Args:
             body: A new instance of Body.
@@ -19,7 +19,7 @@ class Adventurer(Actor):
         self._animation = animation
 
     def get_animation(self):
-        """Gets the bat's animation.
+        """Gets the player's animation.
         
         Returns:
             An instance of Animation.
@@ -27,7 +27,7 @@ class Adventurer(Actor):
         return self._animation
 
     def get_body(self):
-        """Gets the bat's body.
+        """Gets the player's body.
         
         Returns:
             An instance of Body.
@@ -35,23 +35,24 @@ class Adventurer(Actor):
         return self._body
 
     def move_next(self):
-        """Moves the bat using its velocity."""
+        """Moves the player using its velocity."""
+
         position = self._body.get_position()
         velocity = self._body.get_velocity()
         new_position = position.add(velocity)
         self._body.set_position(new_position)
 
-    def swing_left(self):
-        """Steers the bat to the left."""
+    def move_left(self):
+        """Moves the player to the left."""
         velocity = Point(-ADVENTURER_VELOCITY, 0)
         self._body.set_velocity(velocity)
         
-    def swing_right(self):
-        """Steers the bat to the right."""
+    def move_right(self):
+        """Moves the player to the right."""
         velocity = Point(ADVENTURER_VELOCITY, 0)
         self._body.set_velocity(velocity)
     
     def stop_moving(self):
-        """Stops the bat from moving."""
+        """Stops the player from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)

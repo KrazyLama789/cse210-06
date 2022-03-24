@@ -10,8 +10,8 @@ class ControlAdventurerAction(Action):
     def execute(self, cast, script, callback):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)
         if self._keyboard_service.is_key_down(LEFT): 
-            adventurer.swing_left()
+            adventurer.move_left()
         elif self._keyboard_service.is_key_down(RIGHT): 
-            adventurer.swing_right()  
+            adventurer.move_right()  
         else: 
             adventurer.stop_moving()        
