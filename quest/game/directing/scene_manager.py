@@ -6,6 +6,7 @@ from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
 from game.casting.adventurer import Adventurer
+from game.casting.boss import Boss
 from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
@@ -13,6 +14,7 @@ from game.scripting.control_adventurer_action import ControlAdventurerAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.draw_adventurer_action import DrawAdventurerAction
+from game.scripting.draw_boss_action import DrawBossAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
@@ -38,7 +40,8 @@ class SceneManager:
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    DRAW_ADVENTURER_ACTION= DrawAdventurerAction(VIDEO_SERVICE)
+    DRAW_ADVENTURER_ACTION = DrawAdventurerAction(VIDEO_SERVICE)
+    DRAW_BOSS_ACTION = DrawBossAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -72,6 +75,7 @@ class SceneManager:
         self._add_lives(cast)
         self._add_score(cast)
         self._add_adventurer(cast)
+        self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -84,6 +88,7 @@ class SceneManager:
         
     def _prepare_next_level(self, cast, script):
         self._add_adventurer(cast)
+        self._add_boss(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -93,6 +98,7 @@ class SceneManager:
         
     def _prepare_try_again(self, cast, script):
         self._add_adventurer(cast)
+        self._add_boss(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -165,6 +171,18 @@ class SceneManager:
         animation = Animation(ADVENTURER_IMAGES, ADVENTURER_RATE)
         adventurer = Adventurer(body, animation)
         cast.add_actor(ADVENTURER_GROUP, adventurer)
+        
+    def _add_boss(self, cast):
+        cast.clear_actors(BOSS_GROUP)
+        x = RIGHT_CENTER_X - BOSS_WIDTH / 2
+        y = SCREEN_HEIGHT - BOSS_HEIGHT
+        position = Point(x, y)
+        size = Point(BOSS_WIDTH, BOSS_HEIGHT)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        animation = Animation(BOSS_IMAGES, BOSS_RATE)
+        boss = Boss(body, animation)
+        cast.add_actor(BOSS_GROUP, boss)
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
@@ -182,6 +200,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_ADVENTURER_ACTION)
+        script.add_action(OUTPUT, self.DRAW_BOSS_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -195,5 +214,4 @@ class SceneManager:
         
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
-        script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
