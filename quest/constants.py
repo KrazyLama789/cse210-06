@@ -100,11 +100,11 @@ ADVENTURER_VELOCITY = 1
 
 # BOSS
 BOSS_GROUP = "boss"
-BOSS_IMAGES = ["quest/assets/images/left101.png"]
+BOSS_IMAGES = [f"quest/assets/images/demon-idle{n:1}.png" for n in range(1, 6)]
 BOSS_WIDTH = 106
 BOSS_HEIGHT = 250
 BOSS_RATE = 6
-BOSS_VELOCITY = 0
+BOSS_VELOCITY = 1
 
 #BACKGROUND
 LAYER_1 = "quest/assets/images/redsky.png",
