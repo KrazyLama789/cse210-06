@@ -19,5 +19,5 @@ class CollideBossAction(Action):
         boss_position = body.get_position()
         boss_x = boss_position.get_x()
         
-        if adventurer_x in range(int(boss_x - 30), int(boss_x + 30)):
+        if adventurer_x in range(int(boss_x - 30), int(boss_x + BOSS_WIDTH)):
             callback.on_next(BOSS_FIGHT)
