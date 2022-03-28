@@ -72,8 +72,9 @@ class Stats(Actor):
         """Adds one level."""
         self._level += 1
 
-    def reset(self):
-        """Resets the stats back to their default values."""
-        self._level = 1
-        self._hp = DEFAULT_HP
-        self._xp = 0
+# Uses if implementing new game functionality.
+    # def reset(self):
+    #         """Resets the stats back to their default values."""
+    #         self._level = 1
+    #         self._hp = DEFAULT_HP
+    #         self._xp = 0
