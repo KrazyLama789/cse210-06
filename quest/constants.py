@@ -31,6 +31,8 @@ FONT_LARGE = 48
 BOUNCE_SOUND = "quest/assets/sounds/boing.wav"
 WELCOME_SOUND = "quest/assets/sounds/start.wav"
 OVER_SOUND = "quest/assets/sounds/over.wav"
+BOSS_FIGHT_SOUND = "quest/assets/sounds/juhani-junkala-epic-boss-battle.mp3"
+
 
 # TEXT
 ALIGN_CENTER = 0
