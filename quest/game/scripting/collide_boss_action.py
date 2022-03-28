@@ -6,7 +6,8 @@ class CollideBossAction(Action):
 
     def __init__(self, physics_service, audio_service):
         self._physics_service = physics_service
-        self._audio_service = audio_service    
+        self._audio_service = audio_service  
+        self._is_boss_fight = False  
         
     def execute(self, cast, script, callback):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)
@@ -19,4 +20,4 @@ class CollideBossAction(Action):
         boss_x = boss_position.get_x()
         
         if adventurer_x in range(int(boss_x - 30), int(boss_x + 30)):
-            print ("this worked")
+            self._is_boss_fight = True
