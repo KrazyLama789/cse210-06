@@ -20,4 +20,4 @@ class CollideBossAction(Action):
         boss_x = boss_position.get_x()
         
         if adventurer_x in range(int(boss_x - 30), int(boss_x + 30)):
-            self._is_boss_fight = True
+            callback.on_next(BOSS_FIGHT)

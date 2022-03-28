@@ -61,14 +61,14 @@ class SceneManager:
     def prepare_scene(self, scene, cast, script):
         if scene == NEW_GAME:
             self._prepare_new_game(cast, script)
-        elif scene == NEXT_LEVEL:
-            self._prepare_next_level(cast, script)
-        elif scene == TRY_AGAIN:
-            self._prepare_try_again(cast, script)
         elif scene == IN_PLAY:
             self._prepare_in_play(cast, script)
+        elif scene == BOSS_FIGHT:
+            self._prepare_boss_fight(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
+        elif scene == TRY_AGAIN:
+            self._prepare_try_again(cast, script)
     
     # ----------------------------------------------------------------------------------------------
     # scene methods
@@ -86,12 +86,12 @@ class SceneManager:
         self._add_initialize_script(script)
         self._add_load_script(script)
         script.clear_actions(INPUT)
-        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, NEXT_LEVEL))
+        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, BOSS_FIGHT))
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
         
-    def _prepare_next_level(self, cast, script):
+    def _prepare_boss_fight(self, cast, script):
         self._add_adventurer(cast)
         self._add_boss(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
