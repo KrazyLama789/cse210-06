@@ -80,6 +80,7 @@ class SceneManager:
         self._add_hp(cast)
         self._add_xp(cast)
         self._add_adventurer(cast)
+        self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
