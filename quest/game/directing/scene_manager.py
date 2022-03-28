@@ -67,8 +67,8 @@ class SceneManager:
             self._prepare_boss_fight(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
-        elif scene == TRY_AGAIN:
-            self._prepare_try_again(cast, script)
+        # elif scene == TRY_AGAIN:
+        #     self._prepare_try_again(cast, script)
     
     # ----------------------------------------------------------------------------------------------
     # scene methods
@@ -80,37 +80,17 @@ class SceneManager:
         self._add_hp(cast)
         self._add_xp(cast)
         self._add_adventurer(cast)
-        self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
         self._add_load_script(script)
         script.clear_actions(INPUT)
-        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, BOSS_FIGHT))
+        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, IN_PLAY))
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
         
-    def _prepare_boss_fight(self, cast, script):
-        self._add_adventurer(cast)
-        self._add_boss(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
-
-        script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-        self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
-    def _prepare_try_again(self, cast, script):
-        self._add_adventurer(cast)
-        self._add_boss(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
-
-        script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-        self._add_update_script(script)
-        self._add_output_script(script)
-
     def _prepare_in_play(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
 
@@ -118,7 +98,16 @@ class SceneManager:
         script.add_action(INPUT, self.CONTROL_ADVENTURER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
+        
+    def _prepare_boss_fight(self, cast, script):
+        self._add_adventurer(cast)
+        self._add_boss(cast)
+        self._add_dialog(cast, ENTERING_BOSS_FIGHT)
 
+        script.clear_actions(INPUT)
+        self._add_output_script(script)
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
+ 
     def _prepare_game_over(self, cast, script):
         self._add_adventurer(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
@@ -127,7 +116,16 @@ class SceneManager:
         script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
         script.clear_actions(UPDATE)
         self._add_output_script(script)
+       
+    # def _prepare_try_again(self, cast, script):
+    #     self._add_adventurer(cast)
+    #     self._add_dialog(cast, PREP_TO_LAUNCH)
 
+    #     script.clear_actions(INPUT)
+    #     script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
+    #     self._add_update_script(script)
+    #     self._add_output_script(script)
+    
     # ----------------------------------------------------------------------------------------------
     # casting methods
     # ----------------------------------------------------------------------------------------------
