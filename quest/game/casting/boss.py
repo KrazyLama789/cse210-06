@@ -7,7 +7,7 @@ class Boss(Actor):
     """Boss."""
     
     def __init__(self, body, animation, debug = False):
-        """Constructs a new Bat.
+        """Constructs a new boss.
         
         Args:Args:
             body: A new instance of Body.

@@ -56,3 +56,13 @@ class Adventurer(Actor):
         """Stops the player from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
+
+
+    # def combat(self):
+        # if combat True:
+        # Attack() or Run()
+    
+    # def attacks(self):
+        # if 1_key pressed:
+        # boss health -= (rand.int(1, 6) * level)
+            
