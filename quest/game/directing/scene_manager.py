@@ -90,6 +90,7 @@ class SceneManager:
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
         
     def _prepare_in_play(self, cast, script):
@@ -107,7 +108,7 @@ class SceneManager:
 
         script.clear_actions(INPUT)
         self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, BOSS_FIGHT_SOUND))
  
     def _prepare_game_over(self, cast, script):
         self._add_adventurer(cast)
