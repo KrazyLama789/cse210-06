@@ -72,30 +72,29 @@ class Character(Actor):
         
     # COMBAT METHODS
     
-    def action_1(self, opponent_level):
+    def action_1(self, opponent_level = 0):
         """What the character does when key 1 is pressed"""
-        
         hit = random.randint(1, 10) 
+        attack = 0
         if hit <= 8:
-            return 2
-        else:
-            return 0
+            attack = 2
+        return attack
 
     def action_2(self):
         """What the character does when key 2 is pressed"""
         hit = random.randint(1, 10) 
+        attack = 0
         if hit <= 5:
-            return 4
-        else:
-            return 0
+            attack = 4
+        return attack
 
     def action_3(self):
         """What the character does when key 3 is pressed"""
-        hit = random.randint(1, 10) 
+        hit = random.randint(1, 10)
+        attack = 0 
         if hit <= 2:
-            return (random.rand.int(1, 6) * self.get_level())
-        else:
-            return 0
+            attack = (random.randint(1, 6) * self.get_level())
+        return attack
 
     def action_4(self):
         """What the character does when key 4 is pressed"""
@@ -133,8 +132,9 @@ class Character(Actor):
         """
         return self._max_hp
 
-    def lose_hp(self):
+    def lose_hp(self, attack):
         """Removes one life."""
-        if self._hp > 0:
-            self._hp -= 1
+        if self._current_hp > 0:
+            print (attack)
+            self._current_hp -= attack
 

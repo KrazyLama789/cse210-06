@@ -9,11 +9,10 @@ class ControlCombatAction(Action):
         
     def execute(self, cast, script, callback):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)
-        
-       #This is for a "run away" action during combat. It is only partially working. 
-        if self._keyboard_service.is_key_down("4"):
-            callback.on_next(IN_PLAY)
-            cast.clear_actors(DEMON_GROUP)
+        # This is for a "run away" action during combat. It is only partially working. 
+        if self._keyboard_service.is_key_pressed("4"):
+            callback.on_next(NPC_COMBAT)
+            # cast.clear_actors(DEMON_GROUP)
 
         # Kosei, build combat controlls here.
         # if self._keyboard_service.is_key_down(): 

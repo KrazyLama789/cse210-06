@@ -19,6 +19,7 @@ from game.scripting.draw_demon_action import DrawDemonAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
+from game.scripting.npc_combat_action import NpcCombatAction
 from game.scripting.move_adventurer_action import MoveAdventurerAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
@@ -50,6 +51,7 @@ class SceneManager:
     DRAW_DEMON_ACTION = DrawDemonAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
+    NPC_COMBAT_ACTION = NpcCombatAction()
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_ADVENTURER_ACTION = MoveAdventurerAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -68,6 +70,10 @@ class SceneManager:
             self._prepare_new_screen(cast, script)
         elif scene == COMBAT:
             self._prepare_combat(cast, script)
+        elif scene == ADVENTURER_COMBAT:
+            self._prepare_adventurer_combat(cast, script)
+        elif scene == NPC_COMBAT:
+            self._prepare_npc_combat(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
         # elif scene == TRY_AGAIN:
@@ -79,12 +85,12 @@ class SceneManager:
     
     def _prepare_new_game(self, cast, script):
         self._add_adventurer(cast)
-        self._add_dialog(cast, ENTER_TO_START)
+        self._add_dialog(cast, WELCOME)
 
         self._add_initialize_script(script)
         self._add_load_script(script)
         script.clear_actions(INPUT)
-        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, IN_PLAY))
+        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 5))
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
@@ -100,7 +106,6 @@ class SceneManager:
         
     def _prepare_new_screen(self, cast, script):
         self._add_demon(cast)
-        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, IN_PLAY))
         
     def _prepare_combat(self, cast, script):
         self._get_adventurer(cast)
@@ -108,9 +113,30 @@ class SceneManager:
         self._add_dialog(cast, ENTERING_COMBAT)
 
         script.clear_actions(INPUT)
-        script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
         self._add_output_script(script)
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, COMBAT_SOUNDTRACK))
+        
+    def _prepare_adventurer_combat(self, cast, script):
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, "adv")
+        self._get_adventurer(cast)
+        self._get_demon
+
+        script.clear_actions(INPUT)
+        script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
+        self._add_output_script(script)
+        
+    def _prepare_npc_combat(self, cast, script):
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, "npc")
+        self._get_adventurer(cast)
+        self._get_demon(cast)
+
+        script.clear_actions(INPUT)
+        script.add_action(INPUT, self.NPC_COMBAT_ACTION)
+        script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
+        self._add_output_script(script)
  
     def _prepare_game_over(self, cast, script):
         self._add_adventurer(cast)

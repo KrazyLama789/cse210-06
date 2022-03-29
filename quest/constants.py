@@ -57,8 +57,10 @@ NEW_GAME = 0
 IN_PLAY = 1
 NEW_SCREEN = 2
 COMBAT = 3
-GAME_OVER = 4
-TRY_AGAIN = 5
+ADVENTURER_COMBAT = 4
+NPC_COMBAT = 5
+GAME_OVER = 6
+TRY_AGAIN = 7
 
 # LEVELS
 LEVEL_FILE = "quest/assets/data/level-{:03}.txt"
@@ -123,7 +125,7 @@ LAYER_5 = "quest/assets/images/redcloud.png"
 
 # DIALOG
 DIALOG_GROUP = "dialogs"
-ENTER_TO_START = "PRESS ENTER TO START"
+WELCOME = "Welcome Adventurer\nYour Quest Begins Now!"
 ENTERING_COMBAT = "ENTERING COMBAT"
 WAS_GOOD_GAME = "GAME OVER"
 
