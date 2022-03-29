@@ -16,3 +16,7 @@ class NpcCombatAction(Action):
             
         
         # callback.on_next(GAME_OVER)
+
+
+
+        

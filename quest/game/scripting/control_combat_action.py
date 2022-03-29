@@ -11,7 +11,7 @@ class ControlCombatAction(Action):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)
         demon = cast.get_first_actor(DEMON_GROUP)
         # Kosei, build combat controlls here.
-        # if self._keyboard_service.is_key_down(LEFT): 
+        # if self._keyboard_service.is_key_down(): 
         #     adventurer.move_left()
         # elif self._keyboard_service.is_key_down(RIGHT): 
         #     adventurer.move_right()  
