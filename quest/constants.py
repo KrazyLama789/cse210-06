@@ -97,7 +97,9 @@ XP_FORMAT = "XP: {}"
 ADVENTURER_GROUP = "adventurers"
 ADVENTURER_IMAGES = [f"quest/assets/images/{n:03}.png" for n in range(101, 113)]
 ADVENTURER_WIDTH = 106
-ADVENTURER_HEIGHT = 250
+ADVENTURER_HEIGHT = 100 
+"""I changed adventurer height to 250 to move it up on the screen, before I realized that it's starting position is set in scene_manager 
+under add_adventurer"""
 ADVENTURER_RATE = 6
 ADVENTURER_VELOCITY = 1
 
@@ -105,7 +107,9 @@ ADVENTURER_VELOCITY = 1
 BOSS_GROUP = "boss"
 BOSS_IMAGES = [f"quest/assets/images/demon-idle{n:1}.png" for n in range(1, 6)]
 BOSS_WIDTH = 106
-BOSS_HEIGHT = 250
+BOSS_HEIGHT = 100
+"""I changed Boss height to 325 to move it up on the screen, before I realized that it's starting position is set in scene_manager 
+under add_adventurer"""
 BOSS_RATE = 6
 BOSS_VELOCITY = 1
 
