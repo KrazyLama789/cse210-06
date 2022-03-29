@@ -90,7 +90,7 @@ class SceneManager:
         self._add_initialize_script(script)
         self._add_load_script(script)
         script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 5))
+        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 4))
         self._add_output_script(script)
         self._add_unload_script(script)
         self._add_release_script(script)
@@ -119,7 +119,7 @@ class SceneManager:
         
     def _prepare_adventurer_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-        self._add_dialog(cast, "adv")
+        self._add_dialog(cast, "Adventurer: \n To Attack Press: \n 1 - Stab \n 2 - Slash \n 3 - Quick Attack", CENTER_X, CENTER_Y - 225)
         self._get_adventurer(cast)
         self._get_demon
 
@@ -129,13 +129,14 @@ class SceneManager:
         
     def _prepare_npc_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-        self._add_dialog(cast, "npc")
+        self._add_dialog(cast, "Demon's Turn")
         self._get_adventurer(cast)
         self._get_demon(cast)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
-        script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
+        # script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 4))
         self._add_output_script(script)
  
     def _prepare_game_over(self, cast, script):
@@ -160,10 +161,10 @@ class SceneManager:
     # casting methods
     # ----------------------------------------------------------------------------------------------
     
-    def _add_dialog(self, cast, message):
+    def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        position = Point(CENTER_X, CENTER_Y)
+        position = Point(x, y)
         label = Label(text, position)
         cast.add_actor(DIALOG_GROUP, label)
 

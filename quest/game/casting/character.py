@@ -96,7 +96,7 @@ class Character(Actor):
             attack = (random.randint(1, 6) * self.get_level())
         return attack
 
-    def action_4(self):
+    def action_r (self):
         """What the character does when key 4 is pressed"""
         # Run away. Defined in control_combat_action.py
         
