@@ -58,7 +58,7 @@ Advanced:
 ---
 ## services: #Kosei
 - movement controls (left and right)
-- interaction (space bar)
+- interaction (space bar) -- not implemented
 - choose action (1 2 3 4)
 
 ## sources:
