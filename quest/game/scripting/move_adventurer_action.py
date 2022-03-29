@@ -19,8 +19,10 @@ class MoveAdventurerAction(Action):
 
         if x < 0:
             position = Point(SCREEN_WIDTH, position.get_y())
+            callback.on_next(NEW_SCREEN)
         elif x > (SCREEN_WIDTH):
             position = Point(0, position.get_y())
+            callback.on_next(NEW_SCREEN)
             
         body.set_position(position)
         

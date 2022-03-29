@@ -55,9 +55,10 @@ PAUSE = "p"
 # SCENES
 NEW_GAME = 0
 IN_PLAY = 1
-BOSS_FIGHT = 2
-GAME_OVER = 3
-TRY_AGAIN = 4
+NEW_SCREEN = 2
+BOSS_FIGHT = 3
+GAME_OVER = 4
+TRY_AGAIN = 5
 
 # LEVELS
 LEVEL_FILE = "quest/assets/data/level-{:03}.txt"

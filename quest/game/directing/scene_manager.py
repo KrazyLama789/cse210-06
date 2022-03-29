@@ -64,6 +64,8 @@ class SceneManager:
             self._prepare_new_game(cast, script)
         elif scene == IN_PLAY:
             self._prepare_in_play(cast, script)
+        elif scene == NEW_SCREEN:
+            self._prepare_new_screen(cast, script)
         elif scene == BOSS_FIGHT:
             self._prepare_boss_fight(cast, script)
         elif scene == GAME_OVER:    
@@ -77,7 +79,6 @@ class SceneManager:
     
     def _prepare_new_game(self, cast, script):
         self._add_adventurer(cast)
-        self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -92,15 +93,18 @@ class SceneManager:
         
     def _prepare_in_play(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_ADVENTURER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
         
+    def _prepare_new_screen(self, cast, script):
+        self._add_boss(cast)
+        script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, IN_PLAY))
+        
     def _prepare_boss_fight(self, cast, script):
         self._get_adventurer(cast)
-        self._add_boss(cast)
+        self._get_boss(cast)
         self._add_dialog(cast, ENTERING_BOSS_FIGHT)
 
         script.clear_actions(INPUT)
@@ -154,8 +158,12 @@ class SceneManager:
         adventurer.reset_position()
         return cast.get_first_actor(ADVENTURER_GROUP)
         
-    def _add_boss(self, cast):
+    def _add_boss(self, cast, direction = "right"):
         cast.clear_actors(BOSS_GROUP)
+        if direction == "left":
+            x = LEFT_CENTER_X - BOSS_WIDTH / 2
+        else:    
+            x = RIGHT_CENTER_X - BOSS_WIDTH / 2
         x = RIGHT_CENTER_X - BOSS_WIDTH / 2
         y = SCREEN_HEIGHT - 320 #BOSS_HEIGHT
         position = Point(x, y)
@@ -166,8 +174,8 @@ class SceneManager:
         boss = Boss(body, animation)
         cast.add_actor(BOSS_GROUP, boss)
         
-    def _get_boss(self):
-        return self.cast.get_first_actor(BOSS_GROUP)
+    def _get_boss(self, cast):
+        return cast.get_first_actor(BOSS_GROUP)
         
 
     # ----------------------------------------------------------------------------------------------
