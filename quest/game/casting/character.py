@@ -18,9 +18,12 @@ class Character(Actor):
         self._body = body
         self._animation = animation
         self._debug = debug
-        self._level = self._set_level()
+        self._level = 0
+        self._set_level()
         self._max_hp = DEFAULT_HP
         self._current_hp = DEFAULT_HP
+
+    # GENERATE CHARACTER
 
     def _set_level(self):
         self._level = 1
@@ -40,6 +43,8 @@ class Character(Actor):
             An instance of Body.
         """
         return self._body
+    
+    # MOVEMENT METHODS
     
     def move_next(self):
         """Moves the character using its velocity."""
@@ -63,6 +68,8 @@ class Character(Actor):
         """Stops the character from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
+        
+    # COMBAT METHODS
     
     def action_1(self, opponent_level):
         """What the character does when key 1 is pressed"""
@@ -76,6 +83,8 @@ class Character(Actor):
             
     def action_4(self):
         """What the character does when key 4 is pressed"""
+        
+    # STATS METHODS
         
     def add_hp(self):
         """Adds to current hit xp."""
