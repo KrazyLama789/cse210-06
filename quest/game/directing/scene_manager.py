@@ -140,7 +140,7 @@ class SceneManager:
     def _add_adventurer(self, cast):
         cast.clear_actors(ADVENTURER_GROUP)
         x = CENTER_X - ADVENTURER_WIDTH / 2
-        y = SCREEN_HEIGHT - ADVENTURER_HEIGHT
+        y = SCREEN_HEIGHT - 250 #ADVENTURER_HEIGHT
         position = Point(x, y)
         size = Point(ADVENTURER_WIDTH, ADVENTURER_HEIGHT)
         velocity = Point(0, 0)
@@ -152,7 +152,7 @@ class SceneManager:
     def _add_boss(self, cast):
         cast.clear_actors(BOSS_GROUP)
         x = RIGHT_CENTER_X - BOSS_WIDTH / 2
-        y = SCREEN_HEIGHT - BOSS_HEIGHT
+        y = SCREEN_HEIGHT - 320 #BOSS_HEIGHT
         position = Point(x, y)
         size = Point(BOSS_WIDTH, BOSS_HEIGHT)
         velocity = Point(0, 0)
