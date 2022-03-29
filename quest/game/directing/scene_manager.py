@@ -6,16 +6,16 @@ from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
 from game.casting.adventurer import Adventurer
-from game.casting.boss import Boss
+from game.casting.demon import Demon
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.control_combat_action import ControlCombatAction
-from game.scripting.collide_boss_action import CollideBossAction
+from game.scripting.collide_demon_action import CollideDemonAction
 from game.scripting.control_adventurer_action import ControlAdventurerAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.draw_adventurer_action import DrawAdventurerAction
-from game.scripting.draw_boss_action import DrawBossAction
+from game.scripting.draw_demon_action import DrawDemonAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
@@ -43,11 +43,11 @@ class SceneManager:
     
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
     CONTROL_COMBAT_ACTION = ControlCombatAction(KEYBOARD_SERVICE)
-    COLLIDE_BOSS_ACTION = CollideBossAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_DEMON_ACTION = CollideDemonAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_ADVENTURER_ACTION = DrawAdventurerAction(VIDEO_SERVICE)
-    DRAW_BOSS_ACTION = DrawBossAction(VIDEO_SERVICE)
+    DRAW_DEMON_ACTION = DrawDemonAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -66,8 +66,8 @@ class SceneManager:
             self._prepare_in_play(cast, script)
         elif scene == NEW_SCREEN:
             self._prepare_new_screen(cast, script)
-        elif scene == BOSS_FIGHT:
-            self._prepare_boss_fight(cast, script)
+        elif scene == COMBAT:
+            self._prepare_combat(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
         # elif scene == TRY_AGAIN:
@@ -99,18 +99,18 @@ class SceneManager:
         self._add_output_script(script)
         
     def _prepare_new_screen(self, cast, script):
-        self._add_boss(cast)
+        self._add_demon(cast)
         script.add_action(INPUT, ChangeSceneAction(self.KEYBOARD_SERVICE, IN_PLAY))
         
-    def _prepare_boss_fight(self, cast, script):
+    def _prepare_combat(self, cast, script):
         self._get_adventurer(cast)
-        self._get_boss(cast)
-        self._add_dialog(cast, ENTERING_BOSS_FIGHT)
+        self._get_demon(cast)
+        self._add_dialog(cast, ENTERING_COMBAT)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
         self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, BOSS_FIGHT_SOUND))
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, COMBAT_SOUNDTRACK))
  
     def _prepare_game_over(self, cast, script):
         self._add_adventurer(cast)
@@ -158,24 +158,24 @@ class SceneManager:
         adventurer.reset_position()
         return cast.get_first_actor(ADVENTURER_GROUP)
         
-    def _add_boss(self, cast, direction = "right"):
-        cast.clear_actors(BOSS_GROUP)
+    def _add_demon(self, cast, direction = "right"):
+        cast.clear_actors(DEMON_GROUP)
         if direction == "left":
-            x = LEFT_CENTER_X - BOSS_WIDTH / 2
+            x = LEFT_CENTER_X - DEMON_WIDTH / 2
         else:    
-            x = RIGHT_CENTER_X - BOSS_WIDTH / 2
-        x = RIGHT_CENTER_X - BOSS_WIDTH / 2
-        y = SCREEN_HEIGHT - 320 #BOSS_HEIGHT
+            x = RIGHT_CENTER_X - DEMON_WIDTH / 2
+        x = RIGHT_CENTER_X - DEMON_WIDTH / 2
+        y = SCREEN_HEIGHT - 320 #DEMON_HEIGHT
         position = Point(x, y)
-        size = Point(BOSS_WIDTH, BOSS_HEIGHT)
+        size = Point(DEMON_WIDTH, DEMON_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(BOSS_IMAGES, BOSS_RATE)
-        boss = Boss(body, animation)
-        cast.add_actor(BOSS_GROUP, boss)
+        animation = Animation(DEMON_IMAGES, DEMON_RATE)
+        demon = Demon(body, animation)
+        cast.add_actor(DEMON_GROUP, demon)
         
-    def _get_boss(self, cast):
-        return cast.get_first_actor(BOSS_GROUP)
+    def _get_demon(self, cast):
+        return cast.get_first_actor(DEMON_GROUP)
         
 
     # ----------------------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_ADVENTURER_ACTION)
-        script.add_action(OUTPUT, self.DRAW_BOSS_ACTION)
+        script.add_action(OUTPUT, self.DRAW_DEMON_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -209,5 +209,5 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BOSS_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_DEMON_ACTION)
         script.add_action(UPDATE, self.MOVE_ADVENTURER_ACTION)

@@ -3,11 +3,11 @@ from game.casting.character import Character
 from game.casting.point import Point
 
 
-class Boss(Character):
-    """Boss."""
+class Demon(Character):
+    """Demon."""
     
     def __init__(self, body, animation, debug = False):
-        """Constructs a boss.
+        """Constructs a demon.
         
         Args:
             body: A new instance of Body.

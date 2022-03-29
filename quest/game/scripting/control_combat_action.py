@@ -13,7 +13,7 @@ class ControlCombatAction(Action):
        #This is for a "run away" action during combat. It is only partially working. 
         if self._keyboard_service.is_key_down("4"):
             callback.on_next(IN_PLAY)
-            cast.clear_actors(BOSS_GROUP)
+            cast.clear_actors(DEMON_GROUP)
 
         # Kosei, build combat controlls here.
         # if self._keyboard_service.is_key_down(): 

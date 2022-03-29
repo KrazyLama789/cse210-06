@@ -8,7 +8,7 @@ Final Project design
 ### actors: #Jennifer
 
 - adventurer
-- boss
+- demon
 
 ```
 - Advanced:
@@ -18,7 +18,7 @@ Final Project design
 
 ### images: #Camden
 - adventurer
-- boss
+- demon
 - background
 
 ```
@@ -31,17 +31,17 @@ Final Project design
 ## script: #Mary
 
 - display adventurer
-- display boss
+- display demon
 - display player stats
 - walk from one screen to the next
-- start combat when entering a room with a boss
+- start combat when entering a room with a demon
 - update player stats
 - combat sequence
 - combat resolution
 
 ```
 when in combat:
-- display boss stats
+- display demon stats
 - choose an action
 - update player stats
 - combat sequence
@@ -63,7 +63,7 @@ Advanced:
 
 ## sources:
 
-Epic Boss Battle by Juhani Junkala | https://soundcloud.com/juhanijunkala
+Epic Demon Battle by Juhani Junkala | https://soundcloud.com/juhanijunkala
 Music promoted by https://www.free-stock-music.com
 Creative Commons Attribution 3.0 Unported License
 https://creativecommons.org/licenses/by/3.0/deed.en_US

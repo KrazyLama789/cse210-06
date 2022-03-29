@@ -32,7 +32,7 @@ FONT_LARGE = 48
 BOUNCE_SOUND = "quest/assets/sounds/boing.wav"
 WELCOME_SOUND = "quest/assets/sounds/start.wav"
 OVER_SOUND = "quest/assets/sounds/over.wav"
-BOSS_FIGHT_SOUND = "quest/assets/sounds/juhani-junkala-epic-boss-battle.mp3"
+COMBAT_SOUNDTRACK = "quest/assets/sounds/juhani-junkala-epic-boss-battle.mp3"
 
 
 # TEXT
@@ -56,7 +56,7 @@ PAUSE = "p"
 NEW_GAME = 0
 IN_PLAY = 1
 NEW_SCREEN = 2
-BOSS_FIGHT = 3
+COMBAT = 3
 GAME_OVER = 4
 TRY_AGAIN = 5
 
@@ -104,15 +104,15 @@ under add_adventurer"""
 ADVENTURER_RATE = 6
 ADVENTURER_VELOCITY = 1
 
-# BOSS
-BOSS_GROUP = "boss"
-BOSS_IMAGES = [f"quest/assets/images/demon-idle{n:1}.png" for n in range(1, 6)]
-BOSS_WIDTH = 106
-BOSS_HEIGHT = 100
-"""I changed Boss height to 325 to move it up on the screen, before I realized that it's starting position is set in scene_manager 
+# DEMON
+DEMON_GROUP = "demon"
+DEMON_IMAGES = [f"quest/assets/images/demon-idle{n:1}.png" for n in range(1, 6)]
+DEMON_WIDTH = 106
+DEMON_HEIGHT = 100
+"""I changed Demon height to 325 to move it up on the screen, before I realized that it's starting position is set in scene_manager 
 under add_adventurer"""
-BOSS_RATE = 6
-BOSS_VELOCITY = 1
+DEMON_RATE = 6
+DEMON_VELOCITY = 1
 
 #BACKGROUND
 LAYER_1 = "quest/assets/images/redsky.png",
@@ -124,9 +124,9 @@ LAYER_5 = "quest/assets/images/redcloud.png"
 # DIALOG
 DIALOG_GROUP = "dialogs"
 ENTER_TO_START = "PRESS ENTER TO START"
-ENTERING_BOSS_FIGHT = "ENTERING BOSS FIGHT"
+ENTERING_COMBAT = "ENTERING COMBAT"
 WAS_GOOD_GAME = "GAME OVER"
 
-BOSS_LINE_1 = "Fear the Dark"
-BOSS_LINE_2 = "You Will Obey"
-BOSS_LINE_3 = "I am your Master"
+DEMON_LINE_1 = "Fear the Dark"
+DEMON_LINE_2 = "You Will Obey"
+DEMON_LINE_3 = "I am your Master"
