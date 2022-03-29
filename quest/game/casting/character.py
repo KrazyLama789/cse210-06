@@ -1,6 +1,7 @@
 from constants import *
 from game.casting.actor import Actor
 from game.casting.point import Point
+import random
 
 
 class Character(Actor):
@@ -73,16 +74,33 @@ class Character(Actor):
     
     def action_1(self, opponent_level):
         """What the character does when key 1 is pressed"""
-        # hit = (rand.int(1, 6) * level)
-        # if hit >= opponent_level:
+        
+        hit = random.randint(1, 10) 
+        if hit <= 8:
+            return 2
+        else:
+            return 0
+
     def action_2(self):
         """What the character does when key 2 is pressed"""
-        
+        hit = random.randint(1, 10) 
+        if hit <= 5:
+            return 4
+        else:
+            return 0
+
     def action_3(self):
         """What the character does when key 3 is pressed"""
-            
+        hit = random.randint(1, 10) 
+        if hit <= 2:
+            return (random.rand.int(1, 6) * self.get_level())
+        else:
+            return 0
+
     def action_4(self):
         """What the character does when key 4 is pressed"""
+        # Run away. Defined in control_combat_action.py
+        
         
     # STATS METHODS
         
