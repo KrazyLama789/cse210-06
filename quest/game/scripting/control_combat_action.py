@@ -6,7 +6,6 @@ class ControlCombatAction(Action):
 
     def __init__(self, keyboard_service):
         self._keyboard_service = keyboard_service
-        self.execute()
         
     def execute(self, cast, script, callback):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)

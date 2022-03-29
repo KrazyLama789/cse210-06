@@ -99,7 +99,7 @@ class SceneManager:
         self._add_output_script(script)
         
     def _prepare_boss_fight(self, cast, script):
-        self._add_adventurer(cast)
+        self._get_adventurer(cast)
         self._add_boss(cast)
         self._add_dialog(cast, ENTERING_BOSS_FIGHT)
 
@@ -149,6 +149,11 @@ class SceneManager:
         adventurer = Adventurer(body, animation)
         cast.add_actor(ADVENTURER_GROUP, adventurer)
         
+    def _get_adventurer(self, cast):
+        adventurer = cast.get_first_actor(ADVENTURER_GROUP)
+        adventurer.reset_position()
+        return cast.get_first_actor(ADVENTURER_GROUP)
+        
     def _add_boss(self, cast):
         cast.clear_actors(BOSS_GROUP)
         x = RIGHT_CENTER_X - BOSS_WIDTH / 2
@@ -160,6 +165,10 @@ class SceneManager:
         animation = Animation(BOSS_IMAGES, BOSS_RATE)
         boss = Boss(body, animation)
         cast.add_actor(BOSS_GROUP, boss)
+        
+    def _get_boss(self):
+        return self.cast.get_first_actor(BOSS_GROUP)
+        
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods

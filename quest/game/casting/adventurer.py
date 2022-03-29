@@ -42,3 +42,10 @@ class Adventurer(Character):
         """Increases maximum hit hp."""
         self._max_hp += 3
         self._current_hp = self._max_hp
+        
+    def reset_position(self):
+        body = self.get_body()
+        position = body.get_position()
+        current_y = position.get_y()
+        body.set_position(Point(LEFT_CENTER_X, current_y))
+        self.stop_moving()
