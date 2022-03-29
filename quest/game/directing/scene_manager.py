@@ -7,7 +7,6 @@ from game.casting.label import Label
 from game.casting.point import Point
 from game.casting.adventurer import Adventurer
 from game.casting.boss import Boss
-from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.collide_boss_action import CollideBossAction
@@ -75,10 +74,6 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
-        self._add_stats(cast)
-        self._add_level(cast)
-        self._add_hp(cast)
-        self._add_xp(cast)
         self._add_adventurer(cast)
         self._add_boss(cast)
         self._add_dialog(cast, ENTER_TO_START)
@@ -138,32 +133,6 @@ class SceneManager:
         position = Point(CENTER_X, CENTER_Y)
         label = Label(text, position)
         cast.add_actor(DIALOG_GROUP, label)
-
-    def _add_level(self, cast):
-        cast.clear_actors(LEVEL_GROUP)
-        text = Text(LEVEL_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
-        position = Point(HUD_MARGIN, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(LEVEL_GROUP, label)
-
-    def _add_hp(self, cast):
-        cast.clear_actors(HP_GROUP)
-        text = Text(HP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
-        position = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL)
-        label = Label(text, position)
-        cast.add_actor(HP_GROUP, label)
-
-    def _add_xp(self, cast):
-        cast.clear_actors(XP_GROUP)
-        text = Text(XP_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
-        position = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL * 2)
-        label = Label(text, position)
-        cast.add_actor(XP_GROUP, label)
-
-    def _add_stats(self, cast):
-        cast.clear_actors(STATS_GROUP)
-        stats = Stats()
-        cast.add_actor(STATS_GROUP, stats)
 
     def _add_adventurer(self, cast):
         cast.clear_actors(ADVENTURER_GROUP)

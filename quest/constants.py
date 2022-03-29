@@ -1,4 +1,5 @@
 from game.casting.color import Color
+from game.casting.point import Point
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -85,9 +86,9 @@ DEFAULT_HP = 10
 
 # HUD
 HUD_MARGIN = 15
-LEVEL_GROUP = "level"
-HP_GROUP = "hp"
-XP_GROUP = "xp"
+LEVEL_POSITION = Point(HUD_MARGIN, HUD_MARGIN)
+HP_POSITION = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL)
+XP_POSITION = Point(HUD_MARGIN, HUD_MARGIN + FONT_SMALL * 2)
 LEVEL_FORMAT = "LEVEL: {}"
 HP_FORMAT = "HP: {}"
 XP_FORMAT = "XP: {}"
