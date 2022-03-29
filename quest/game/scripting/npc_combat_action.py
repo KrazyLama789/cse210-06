@@ -21,7 +21,7 @@ class NpcCombatAction(Action):
 
         if adventurer.get_current_hp() <= 0:
             callback.on_next(GAME_OVER)
-
+         
         # if hit == 1:
         #     adventurer.lose_hp(demon.action_1())
         #     callback.on_next(ADVENTURER_COMBAT)
