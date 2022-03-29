@@ -15,10 +15,10 @@ class ControlCombatAction(Action):
             # cast.clear_actors(DEMON_GROUP)
 
         # Kosei, build combat controlls here.
-        if self._keyboard_service.is_key_down(LEFT): 
-            adventurer.move_left()
-        elif self._keyboard_service.is_key_down(RIGHT): 
-            adventurer.move_right()  
+        # if self._keyboard_service.is_key_down(LEFT): 
+        #     adventurer.move_left()
+        # elif self._keyboard_service.is_key_down(RIGHT): 
+        #     adventurer.move_right()  
         elif self._keyboard_service.is_key_down(SPACE): 
             adventurer.move_right()  
         else: 
