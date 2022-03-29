@@ -9,6 +9,7 @@ from game.casting.adventurer import Adventurer
 from game.casting.boss import Boss
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
+from game.scripting.control_combat_action import ControlCombatAction
 from game.scripting.collide_boss_action import CollideBossAction
 from game.scripting.control_adventurer_action import ControlAdventurerAction
 from game.scripting.draw_dialog_action import DrawDialogAction
@@ -41,6 +42,7 @@ class SceneManager:
     
     
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
+    CONTROL_COMBAT_ACTION = ControlCombatAction(KEYBOARD_SERVICE)
     COLLIDE_BOSS_ACTION = CollideBossAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
@@ -102,6 +104,7 @@ class SceneManager:
         self._add_dialog(cast, ENTERING_BOSS_FIGHT)
 
         script.clear_actions(INPUT)
+        script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
         self._add_output_script(script)
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, BOSS_FIGHT_SOUND))
  
