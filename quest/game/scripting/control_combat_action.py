@@ -14,6 +14,8 @@ class ControlCombatAction(Action):
          # Kosei, build combat controlls here.
         if self._keyboard_service.is_key_pressed("1"): 
             demon.lose_hp(adventurer.action_1())
+            # sound = Sound(STAB_SOUND)
+            # demon.audio_service.play_sound(sound)
             callback.on_next(NPC_COMBAT)
 
         elif self._keyboard_service.is_key_pressed("2"): 

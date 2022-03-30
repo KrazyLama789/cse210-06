@@ -33,6 +33,9 @@ BOUNCE_SOUND = "quest/assets/sounds/boing.wav"
 WELCOME_SOUND = "quest/assets/sounds/start.wav"
 OVER_SOUND = "quest/assets/sounds/over.wav"
 COMBAT_SOUNDTRACK = "quest/assets/sounds/juhani-junkala-epic-boss-battle.mp3"
+SLASH_SOUND = "quest/assets/sounds/slash.mp3"
+STAB_SOUND = "quest/assets/sounds/potion.mp3"
+QUICK_SOUND = "quest/assets/sounds/miss.mp3"
 
 
 # TEXT
