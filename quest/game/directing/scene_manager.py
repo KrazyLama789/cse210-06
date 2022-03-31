@@ -140,8 +140,9 @@ class SceneManager:
         self._add_output_script(script)
  
     def _prepare_game_over(self, cast, script):
-        self._add_adventurer(cast)
-        self._add_dialog(cast, WAS_GOOD_GAME)
+        self._add_dialog(cast, GAME_OVER)
+        cast.clear_actors(ADVENTURER_GROUP)
+        cast.clear_actors(DEMON_GROUP)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
@@ -161,7 +162,7 @@ class SceneManager:
     # casting methods
     # ----------------------------------------------------------------------------------------------
     
-    def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y):
+    def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y - 50):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         position = Point(x, y)

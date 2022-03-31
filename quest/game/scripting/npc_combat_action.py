@@ -14,10 +14,7 @@ class NpcCombatAction(Action):
         demon = cast.get_first_actor(DEMON_GROUP)
     
         attacks = [demon.action_1(), demon.action_2(), demon.action_3()]
-        # hit = random.randint(1,3)      
-
-        adventurer.lose_hp(random.choice(attacks))
-        callback.on_next(ADVENTURER_COMBAT)  
+        adventurer.lose_hp(random.choice(attacks)) 
 
         if adventurer.get_current_hp() <= 0:
             callback.on_next(GAME_OVER)
