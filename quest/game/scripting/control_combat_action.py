@@ -10,13 +10,12 @@ class ControlCombatAction(Action):
     def execute(self, cast, script, callback):
         adventurer = cast.get_first_actor(ADVENTURER_GROUP)
         demon = cast.get_first_actor(DEMON_GROUP)
-        # Kosei, build combat controlls here.
-        # if self._keyboard_service.is_key_down(): 
-        #     adventurer.move_left()
-        # elif self._keyboard_service.is_key_down(RIGHT): 
-        #     adventurer.move_right()  
+
+         # Kosei, build combat controlls here.
         if self._keyboard_service.is_key_pressed("1"): 
             demon.lose_hp(adventurer.action_1())
+            # sound = Sound(STAB_SOUND)
+            # adventurer.audio_service.play_sound(sound)
             callback.on_next(NPC_COMBAT)
 
         elif self._keyboard_service.is_key_pressed("2"): 
@@ -29,8 +28,11 @@ class ControlCombatAction(Action):
 
         # This is for a "run away" action during combat. It is only partially working. 
         elif self._keyboard_service.is_key_pressed("4"): 
-            cast.clear_group(DEMON_GROUP)
+            cast.clear_actors(DEMON_GROUP)
             callback.on_next(IN_PLAY)
 
         else: 
             adventurer.stop_moving()
+
+    #    if adventurer.get_current_hp() <= 0:
+    #         callback.on_next(GAME_OVER)
