@@ -135,6 +135,5 @@ class Character(Actor):
     def lose_hp(self, attack):
         """Removes one life."""
         if self._current_hp > 0:
-            print (attack)
             self._current_hp -= attack
 
