@@ -17,10 +17,12 @@ class Demon(Character):
             debug: If it is being debugged. 
         """
         super().__init__(body, animation, debug)
-        self._level = random.randint(1, 5)
-        self._current_hp = self._level * 5
+        self._level = random.randint(1, 9) #If we make the level two-digits, we will need to fix spacing from side margin
+        self._max_hp = self._level * 5
+        self._current_hp = self._max_hp 
 
         print(f"level: {self._level}")
         print(f"current hp: {self._current_hp}")
+        print(f"current hp: {self._max_hp}")
         
     
