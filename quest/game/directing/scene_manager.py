@@ -126,6 +126,7 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
         self._add_output_script(script)
+        print("Adventurer's turn:")
         
     def _prepare_npc_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
@@ -138,6 +139,7 @@ class SceneManager:
         # script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
         script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 4))
         self._add_output_script(script)
+        print("Demon's turn")
  
     def _prepare_game_over(self, cast, script):
         self._add_dialog(cast, GAME_OVER)
@@ -199,7 +201,7 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         animation = Animation(DEMON_IMAGES, DEMON_RATE)
-        demon = Demon(body, animation)
+        demon = Demon(body, animation, cast.get_first_actor(ADVENTURER_GROUP).get_level())
         cast.add_actor(DEMON_GROUP, demon)
         
     def _get_demon(self, cast):
