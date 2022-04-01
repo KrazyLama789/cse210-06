@@ -21,8 +21,5 @@ class Demon(Character):
         self._max_hp = self._level + 5
         self._current_hp = self._max_hp 
 
-        print(f"level: {self._level}")
-        print(f"current hp: {self._current_hp}")
-        print(f"current hp: {self._max_hp}")
         
     
