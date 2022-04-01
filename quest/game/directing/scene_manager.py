@@ -137,7 +137,7 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
         # script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
-        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 4))
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 3))
         self._add_output_script(script)
         print("Demon's turn")
  

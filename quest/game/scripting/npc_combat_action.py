@@ -7,17 +7,19 @@ import random
 class NpcCombatAction(Action):
 
     def __init__(self):
-        pass
+        self._turn_attack = 0
     
     def execute(self, cast, script, callback):
-        adventurer = cast.get_first_actor(ADVENTURER_GROUP)
-        demon = cast.get_first_actor(DEMON_GROUP)
-    
-        attacks = [demon.action_1(), demon.action_2(), demon.action_3()]
-        choose_attack = random.choice(attacks)
-        adventurer.lose_hp(choose_attack) 
-        print(f"Demon's attack: {choose_attack}")
-        callback.on_next(ADVENTURER_COMBAT)
+        if self._turn_attack == 0:
+            adventurer = cast.get_first_actor(ADVENTURER_GROUP)
+            demon = cast.get_first_actor(DEMON_GROUP)
+        
+            attacks = [demon.action_1(), demon.action_2(), demon.action_3()]
+            choose_attack = random.choice(attacks)
+            adventurer.lose_hp(choose_attack) 
+            print(f"Demon's attack: {choose_attack}")
+            self._turn_attack += 1
+        return
 
         # if adventurer.get_current_hp() <= 0:
         #     callback.on_next(GAME_OVER)
