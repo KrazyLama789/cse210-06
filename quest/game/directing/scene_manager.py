@@ -124,6 +124,7 @@ class SceneManager:
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 3))
         self._add_output_script(script)
         self.NPC_COMBAT_ACTION.reset_turn()
         print("Adventurer's turn:")
