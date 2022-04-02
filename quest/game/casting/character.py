@@ -94,12 +94,7 @@ class Character(Actor):
         attack = 0 
         if hit <= 2:
             attack = (random.randint(1, 6) * self.get_level())
-        return attack
-
-    def action_r (self):
-        """What the character does when key 4 is pressed"""
-        # Run away. Defined in control_combat_action.py
-        
+        return attack    
         
     # STATS METHODS
         
