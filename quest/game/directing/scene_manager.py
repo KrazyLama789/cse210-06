@@ -109,6 +109,7 @@ class SceneManager:
         self._add_output_script(script)
         
     def _prepare_new_screen(self, cast, script):
+        cast.clear_actors(DEMON_GROUP)
         self._add_demon(cast)
         
     def _prepare_combat(self, cast, script):
@@ -119,6 +120,7 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
         self._add_output_script(script)
+        self.CONTROL_COMBAT_ACTION.reset_turn()
         
     def _prepare_adventurer_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
@@ -133,24 +135,27 @@ class SceneManager:
         print("Adventurer's turn:")
         
     def _prepare_adventurer_attack(self, cast, script):
-        print ("adv atk")
-        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 3))
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, self.CONTROL_COMBAT_ACTION.get_attack())
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 2))
         
     def _prepare_npc_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-        self._add_dialog(cast, "Demon's Turn")
+        self._add_dialog(cast,"Demons Turn")
         self._get_adventurer(cast)
         self._get_demon(cast)
 
         script.clear_actions(INPUT)
-        cast.clear_actors(DIALOG_GROUP)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_ATTACK, 2))
         self._add_output_script(script)
+        self.CONTROL_COMBAT_ACTION.reset_turn()
         print("Demon's turn")
         
     def _prepare_npc_attack(self, cast, script):
-        print ('npc atk')
-        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 3))
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, self.NPC_COMBAT_ACTION.get_attack())
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
  
     def _prepare_game_over(self, cast, script):
         print ("game over")
