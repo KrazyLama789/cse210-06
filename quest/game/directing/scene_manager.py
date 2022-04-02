@@ -143,12 +143,12 @@ class SceneManager:
         print("Demon's turn")
  
     def _prepare_game_over(self, cast, script):
+        print ("game over")
         self._add_dialog(cast, GAME_OVER)
         cast.clear_actors(ADVENTURER_GROUP)
         cast.clear_actors(DEMON_GROUP)
 
         script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
         script.clear_actions(UPDATE)
         self._add_output_script(script)
        
