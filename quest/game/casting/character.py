@@ -80,7 +80,7 @@ class Character(Actor):
         else:
             hit = random.randint(1, 10) 
         attack = 0
-        if hit <= 8:
+        if hit > 3:
             attack = 2
         return attack
 
@@ -92,7 +92,7 @@ class Character(Actor):
             hit = random.randint(1, 10) 
 
         attack = 0
-        if hit <= 5:
+        if hit > 5:
             attack = 4
         return attack
 
@@ -103,7 +103,7 @@ class Character(Actor):
         else:
             hit = random.randint(1, 10) 
         attack = 0 
-        if hit <= 2:
+        if hit > 8:
             attack = (random.randint(1, 6) + self.get_level())
         return attack
 
