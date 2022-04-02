@@ -93,7 +93,7 @@ class Character(Actor):
         hit = random.randint(1, 10)
         attack = 0 
         if hit <= 2:
-            attack = (random.randint(1, 6) * self.get_level())
+            attack = (random.randint(1, 6) + self.get_level())
         return attack
 
     def action_r (self):

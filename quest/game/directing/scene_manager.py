@@ -126,6 +126,7 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
         self._add_output_script(script)
+        self.NPC_COMBAT_ACTION.reset_turn()
         print("Adventurer's turn:")
         
     def _prepare_npc_combat(self, cast, script):
@@ -135,8 +136,8 @@ class SceneManager:
         self._get_demon(cast)
 
         script.clear_actions(INPUT)
+        cast.clear_actors(DIALOG_GROUP)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
-        # script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
         script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 3))
         self._add_output_script(script)
         print("Demon's turn")
