@@ -1,5 +1,6 @@
 from game.casting.color import Color
 from game.casting.point import Point
+import tkinter as tk
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -128,12 +129,14 @@ DEMON_RATE = 6
 DEMON_VELOCITY = 1
 
 #BACKGROUND
-LAYER_1 = "quest/assets/images/redsky.png",
-LAYER_2 = "quest/assets/images/redmountain.png",
-LAYER_3 = "quest/assets/images/redtree.png",
-LAYER_4 = "quest/assets/images/redtown.png",
+LAYER_GROUP = "layer"
+LAYER_IMAGES = [f"quest/assets/images/redsky.png"]
+LAYER_2 = "quest/assets/images/redmountain.png"
+LAYER_3 = "quest/assets/images/redtree.png"
+LAYER_4 = "quest/assets/images/redtown.png"
 LAYER_5 = "quest/assets/images/redcloud.png"
-
+LAYER_WIDTH = 0
+LAYER_HEIGHT = 200
 # DIALOG
 DIALOG_GROUP = "dialogs"
 WELCOME = "Welcome Adventurer\nYour Quest Begins Now!"

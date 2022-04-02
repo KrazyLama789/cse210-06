@@ -8,10 +8,13 @@ from game.casting.point import Point
 from game.casting.adventurer import Adventurer
 from game.casting.demon import Demon
 from game.casting.text import Text 
+from game.casting.background import Background
+
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.control_combat_action import ControlCombatAction
 from game.scripting.collide_demon_action import CollideDemonAction
 from game.scripting.control_adventurer_action import ControlAdventurerAction
+from game.scripting.draw_background_action import DrawBackgroundAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.draw_adventurer_action import DrawAdventurerAction
@@ -45,6 +48,7 @@ class SceneManager:
     CONTROL_ADVENTURER_ACTION = ControlAdventurerAction(KEYBOARD_SERVICE)
     CONTROL_COMBAT_ACTION = ControlCombatAction(KEYBOARD_SERVICE)
     COLLIDE_DEMON_ACTION = CollideDemonAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    DRAW_BACKGROUND_ACTION = DrawBackgroundAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_ADVENTURER_ACTION = DrawAdventurerAction(VIDEO_SERVICE)
@@ -84,6 +88,7 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
+        self._add_background(cast)
         self._add_adventurer(cast)
         self._add_dialog(cast, WELCOME)
 
@@ -160,14 +165,29 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     # casting methods
     # ----------------------------------------------------------------------------------------------
-    
+    def _add_background(self, cast):
+        cast.clear_actors(LAYER_GROUP)
+        x = 0
+        y = 0
+        position = Point(x, y)
+        size = Point(LAYER_WIDTH/2,LAYER_HEIGHT/2)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        animation = Animation(LAYER_IMAGES, DEMON_RATE)
+        background = Background(body, animation)
+        cast.add_actor(LAYER_GROUP, background)
+        
+    def _get_background(self, cast):
+        return cast.get_first_actor(LAYER_GROUP)
+        
+
     def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         position = Point(x, y)
         label = Label(text, position)
         cast.add_actor(DIALOG_GROUP, label)
-
+    
     def _add_adventurer(self, cast):
         cast.clear_actors(ADVENTURER_GROUP)
         x = CENTER_X - ADVENTURER_WIDTH / 2
@@ -219,6 +239,7 @@ class SceneManager:
     def _add_output_script(self, script):
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
+        script.add_action(OUTPUT, self.DRAW_BACKGROUND_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_ADVENTURER_ACTION)
         script.add_action(OUTPUT, self.DRAW_DEMON_ACTION)
