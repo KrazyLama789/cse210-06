@@ -230,7 +230,7 @@ class SceneManager:
         else:    
             x = RIGHT_CENTER_X - DEMON_WIDTH / 2
         x = RIGHT_CENTER_X - DEMON_WIDTH / 2
-        y = SCREEN_HEIGHT - 320 #DEMON_HEIGHT
+        y = SCREEN_HEIGHT - 400 #DEMON_HEIGHT
         position = Point(x, y)
         size = Point(DEMON_WIDTH, DEMON_HEIGHT)
         velocity = Point(0, 0)
