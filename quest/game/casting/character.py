@@ -23,6 +23,7 @@ class Character(Actor):
         self._set_level()
         self._max_hp = DEFAULT_HP
         self._current_hp = DEFAULT_HP
+        self._rally_luck = 10
 
     # GENERATE CHARACTER
 
@@ -74,7 +75,7 @@ class Character(Actor):
     
     def action_1(self, opponent_level = 0):
         """What the character does when key 1 is pressed"""
-        hit = random.randint(1, 10) 
+        hit = random.randint(1, self._rally_luck) 
         attack = 0
         if hit <= 8:
             attack = 2
@@ -82,7 +83,7 @@ class Character(Actor):
 
     def action_2(self):
         """What the character does when key 2 is pressed"""
-        hit = random.randint(1, 10) 
+        hit = random.randint(1, self._rally_luck) 
         attack = 0
         if hit <= 5:
             attack = 4
@@ -90,7 +91,7 @@ class Character(Actor):
 
     def action_3(self):
         """What the character does when key 3 is pressed"""
-        hit = random.randint(1, 10)
+        hit = random.randint(1, self._rally_luck)
         attack = 0 
         if hit <= 2:
             attack = (random.randint(1, 6) + self.get_level())
@@ -98,9 +99,10 @@ class Character(Actor):
 
     def action_r (self):
         """What the character does when key 4 is pressed"""
-        # Run away. Defined in control_combat_action.py
-        
-        
+        self._rally_luck = self._rally_luck + 1
+        attack = 0
+        print(self._rally_luck)
+        return attack
     # STATS METHODS
         
     def add_hp(self):

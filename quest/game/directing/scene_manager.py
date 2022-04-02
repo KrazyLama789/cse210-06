@@ -25,6 +25,7 @@ from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.npc_combat_action import NpcCombatAction
 from game.scripting.move_adventurer_action import MoveAdventurerAction
 from game.scripting.play_sound_action import PlaySoundAction
+
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
 from game.scripting.timed_change_scene_action import TimedChangeSceneAction
@@ -129,7 +130,7 @@ class SceneManager:
         
     def _prepare_adventurer_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-        self._add_dialog(cast, "Adventurer: \n To Attack Press: \n 1 - Stab \n 2 - Slash \n 3 - Quick Attack", CENTER_X, CENTER_Y - 225)
+        self._add_dialog(cast, "Adventurer: \n To Attack Press: \n 1 - Stab \n 2 - Slash \n 3 - Quick Attack \n r - Rally", CENTER_X, CENTER_Y - 225)
         self._get_adventurer(cast)
         self._get_demon
 

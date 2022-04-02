@@ -36,6 +36,13 @@ class ControlCombatAction(Action):
                 callback.on_next(ADVENTURER_ATTACK)
                 self._turn_attack = 1
                 print (self._attack)
+
+            elif self._keyboard_service.is_key_pressed("r"): 
+                self._attack = adventurer.action_r()
+                demon.lose_hp(self._attack)
+                callback.on_next(ADVENTURER_ATTACK)
+                self._turn_attack = 1
+                print (self._attack)
     
             elif self._keyboard_service.is_key_pressed("4"): 
                 cast.clear_actors(DEMON_GROUP)

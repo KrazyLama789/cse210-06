@@ -122,7 +122,7 @@ ADVENTURER_HEIGHT = 100
 """I changed adventurer height to 250 to move it up on the screen, before I realized that it's starting position is set in scene_manager 
 under add_adventurer"""
 ADVENTURER_RATE = 6
-ADVENTURER_VELOCITY = 1
+ADVENTURER_VELOCITY = 2
 
 # DEMON
 DEMON_GROUP = "demon"
