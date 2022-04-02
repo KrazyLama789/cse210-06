@@ -6,33 +6,54 @@ class ControlCombatAction(Action):
 
     def __init__(self, keyboard_service):
         self._keyboard_service = keyboard_service
+        self._turn_attack = 0
+        self._attack = 0
         
     def execute(self, cast, script, callback):
-        adventurer = cast.get_first_actor(ADVENTURER_GROUP)
-        demon = cast.get_first_actor(DEMON_GROUP)
+        if self._turn_attack == 0:
+            adventurer = cast.get_first_actor(ADVENTURER_GROUP)
+            demon = cast.get_first_actor(DEMON_GROUP)
 
-         # Kosei, build combat controlls here.
-        if self._keyboard_service.is_key_pressed("1"): 
-            demon.lose_hp(adventurer.action_1())
-            # sound = Sound(STAB_SOUND)
-            # adventurer.audio_service.play_sound(sound)
-            callback.on_next(NPC_COMBAT)
+            if self._keyboard_service.is_key_pressed("1"): 
+                self._attack = adventurer.action_1()
+                demon.lose_hp(self._attack)
+                # sound = Sound(STAB_SOUND)
+                # adventurer.audio_service.play_sound(sound)
+                callback.on_next(ADVENTURER_ATTACK)
+                self._turn_attack = 1
+                print (self._attack)
 
-        elif self._keyboard_service.is_key_pressed("2"): 
-            demon.lose_hp(adventurer.action_2())
-            callback.on_next(NPC_COMBAT)
+            elif self._keyboard_service.is_key_pressed("2"): 
+                self._attack = adventurer.action_2()
+                demon.lose_hp(self._attack)
+                callback.on_next(ADVENTURER_ATTACK)
+                self._turn_attack = 1
+                print (self._attack)
 
-        elif self._keyboard_service.is_key_pressed("3"): 
-            demon.lose_hp(adventurer.action_3())
-            callback.on_next(NPC_COMBAT)
+            elif self._keyboard_service.is_key_pressed("3"): 
+                self._attack = adventurer.action_3()
+                demon.lose_hp(self._attack)
+                callback.on_next(ADVENTURER_ATTACK)
+                self._turn_attack = 1
+                print (self._attack)
+    
+            elif self._keyboard_service.is_key_pressed("4"): 
+                cast.clear_actors(DEMON_GROUP)
+                callback.on_next(IN_PLAY)
+                
+            if demon.get_current_hp() <= 0:
+                adventurer.reset_hp()
+                cast.clear_actors(DEMON_GROUP)
+                adventurer.add_xp(demon.get_level()+2)
+                callback.on_next(IN_PLAY)
 
-        # This is for a "run away" action during combat. It is only partially working. 
-        elif self._keyboard_service.is_key_pressed("4"): 
-            cast.clear_actors(DEMON_GROUP)
-            callback.on_next(IN_PLAY)
-
-        else: 
-            adventurer.stop_moving()
-
-    #    if adventurer.get_current_hp() <= 0:
-    #         callback.on_next(GAME_OVER)
+    def get_attack(self):
+        message = ""
+        if self._attack > 0:
+            message = f"Adventurer attacked for {self._attack} damage."
+        else:
+            message = f"Your attack missed. {self._attack} damage."
+        return message
+    
+    def reset_turn(self):
+        self._turn_attack = 0

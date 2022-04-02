@@ -76,8 +76,12 @@ class SceneManager:
             self._prepare_combat(cast, script)
         elif scene == ADVENTURER_COMBAT:
             self._prepare_adventurer_combat(cast, script)
+        elif scene == ADVENTURER_ATTACK:
+            self._prepare_adventurer_attack(cast, script)
         elif scene == NPC_COMBAT:
             self._prepare_npc_combat(cast, script)
+        elif scene == NPC_ATTACK:
+            self._prepare_npc_attack(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
         # elif scene == TRY_AGAIN:
@@ -110,6 +114,7 @@ class SceneManager:
         self._add_output_script(script)
         
     def _prepare_new_screen(self, cast, script):
+        cast.clear_actors(DEMON_GROUP)
         self._add_demon(cast)
         
     def _prepare_combat(self, cast, script):
@@ -120,7 +125,7 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
         self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, COMBAT_SOUNDTRACK))
+        self.CONTROL_COMBAT_ACTION.reset_turn()
         
     def _prepare_adventurer_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
@@ -131,25 +136,39 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
         self._add_output_script(script)
+        self.NPC_COMBAT_ACTION.reset_turn()
+        print("Adventurer's turn:")
+        
+    def _prepare_adventurer_attack(self, cast, script):
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, self.CONTROL_COMBAT_ACTION.get_attack())
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 2))
         
     def _prepare_npc_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
-        self._add_dialog(cast, "Demon's Turn")
+        self._add_dialog(cast,"Demons Turn")
         self._get_adventurer(cast)
         self._get_demon(cast)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
-        # script.add_action(INPUT, ChangeSceneAction(ADVENTURER_COMBAT))
-        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 4))
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_ATTACK, 2))
         self._add_output_script(script)
+        self.CONTROL_COMBAT_ACTION.reset_turn()
+        print("Demon's turn")
+        
+    def _prepare_npc_attack(self, cast, script):
+        cast.clear_actors(DIALOG_GROUP)
+        self._add_dialog(cast, self.NPC_COMBAT_ACTION.get_attack())
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
  
     def _prepare_game_over(self, cast, script):
-        self._add_adventurer(cast)
-        self._add_dialog(cast, WAS_GOOD_GAME)
+        print ("game over")
+        self._add_dialog(cast, GAME_OVER)
+        cast.clear_actors(ADVENTURER_GROUP)
+        cast.clear_actors(DEMON_GROUP)
 
         script.clear_actions(INPUT)
-        script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
         script.clear_actions(UPDATE)
         self._add_output_script(script)
        
@@ -179,9 +198,8 @@ class SceneManager:
         
     def _get_background(self, cast):
         return cast.get_first_actor(LAYER_GROUP)
-        
-
-    def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y):
+    
+    def _add_dialog(self, cast, message, x = CENTER_X, y = CENTER_Y - 50):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         position = Point(x, y)
@@ -218,7 +236,7 @@ class SceneManager:
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
         animation = Animation(DEMON_IMAGES, DEMON_RATE)
-        demon = Demon(body, animation)
+        demon = Demon(body, animation, cast.get_first_actor(ADVENTURER_GROUP).get_level())
         cast.add_actor(DEMON_GROUP, demon)
         
     def _get_demon(self, cast):

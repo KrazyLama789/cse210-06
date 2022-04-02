@@ -93,7 +93,7 @@ class Character(Actor):
         hit = random.randint(1, 10)
         attack = 0 
         if hit <= 2:
-            attack = (random.randint(1, 6) * self.get_level())
+            attack = (random.randint(1, 6) + self.get_level())
         return attack
 
     def action_r (self):
@@ -135,6 +135,4 @@ class Character(Actor):
     def lose_hp(self, attack):
         """Removes one life."""
         if self._current_hp > 0:
-            print (attack)
             self._current_hp -= attack
-
