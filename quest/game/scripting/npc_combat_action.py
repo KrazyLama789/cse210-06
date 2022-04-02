@@ -20,10 +20,12 @@ class NpcCombatAction(Action):
             self._attack = choose_attack
             adventurer.lose_hp(choose_attack) 
             print(f"Demon's attack: {choose_attack}")
-            self._turn_attack += 1
+            self._turn_attack = 1
+        
+            if adventurer.get_current_hp() <= 0:
+                callback.on_next(GAME_OVER)
+
         return
-        # if adventurer.get_current_hp() <= 0:
-        #     callback.on_next(GAME_OVER)
          
         # if hit == 1:
         #     adventurer.lose_hp(demon.action_1())

@@ -34,6 +34,3 @@ class ControlCombatAction(Action):
         else: 
             adventurer.stop_moving()
 
-        if adventurer.get_current_hp() <= 0:
-            callback.on_next(GAME_OVER)
-            return

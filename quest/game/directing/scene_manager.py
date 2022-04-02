@@ -115,7 +115,6 @@ class SceneManager:
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 2))
         self._add_output_script(script)
-        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, COMBAT_SOUNDTRACK))
         
     def _prepare_adventurer_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
