@@ -13,9 +13,9 @@ class ControlCombatAction(Action):
         if self._turn_attack == 0:
             adventurer = cast.get_first_actor(ADVENTURER_GROUP)
             demon = cast.get_first_actor(DEMON_GROUP)
-
+            is_player = True
             if self._keyboard_service.is_key_pressed("1"): 
-                self._attack = adventurer.action_1()
+                self._attack = adventurer.action_1(is_player)
                 demon.lose_hp(self._attack)
                 # sound = Sound(STAB_SOUND)
                 # adventurer.audio_service.play_sound(sound)
@@ -24,21 +24,21 @@ class ControlCombatAction(Action):
                 print (self._attack)
 
             elif self._keyboard_service.is_key_pressed("2"): 
-                self._attack = adventurer.action_2()
+                self._attack = adventurer.action_2(is_player)
                 demon.lose_hp(self._attack)
                 callback.on_next(ADVENTURER_ATTACK)
                 self._turn_attack = 1
                 print (self._attack)
 
             elif self._keyboard_service.is_key_pressed("3"): 
-                self._attack = adventurer.action_3()
+                self._attack = adventurer.action_3(is_player)
                 demon.lose_hp(self._attack)
                 callback.on_next(ADVENTURER_ATTACK)
                 self._turn_attack = 1
                 print (self._attack)
 
             elif self._keyboard_service.is_key_pressed("r"): 
-                self._attack = adventurer.action_r()
+                self._attack = adventurer.action_r(is_player)
                 demon.lose_hp(self._attack)
                 callback.on_next(ADVENTURER_ATTACK)
                 self._turn_attack = 1

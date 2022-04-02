@@ -73,33 +73,43 @@ class Character(Actor):
         
     # COMBAT METHODS
     
-    def action_1(self, opponent_level = 0):
+    def action_1(self, is_player):
         """What the character does when key 1 is pressed"""
-        hit = random.randint(1, self._rally_luck) 
+        if is_player == False:
+            hit = random.randint(1, self._rally_luck) 
+        else:
+            hit = random.randint(1, 10) 
         attack = 0
         if hit <= 8:
             attack = 2
         return attack
 
-    def action_2(self):
+    def action_2(self, is_player):
         """What the character does when key 2 is pressed"""
-        hit = random.randint(1, self._rally_luck) 
+        if is_player == False:
+            hit = random.randint(1, self._rally_luck) 
+        else:
+            hit = random.randint(1, 10) 
+
         attack = 0
         if hit <= 5:
             attack = 4
         return attack
 
-    def action_3(self):
+    def action_3(self, is_player):
         """What the character does when key 3 is pressed"""
-        hit = random.randint(1, self._rally_luck)
+        if is_player == False:
+            hit = random.randint(1, self._rally_luck) 
+        else:
+            hit = random.randint(1, 10) 
         attack = 0 
         if hit <= 2:
             attack = (random.randint(1, 6) + self.get_level())
         return attack
 
-    def action_r (self):
+    def action_r (self, is_player):
         """What the character does when key 4 is pressed"""
-        self._rally_luck = self._rally_luck + 1
+        self._rally_luck = self._rally_luck + 2
         attack = 0
         print(self._rally_luck)
         return attack

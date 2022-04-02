@@ -1,4 +1,6 @@
 
+from pickle import TRUE
+from tkinter.tix import Tree
 from constants import *
 from game.scripting.action import Action
 import random
@@ -14,8 +16,8 @@ class NpcCombatAction(Action):
         if self._turn_attack == 0:
             adventurer = cast.get_first_actor(ADVENTURER_GROUP)
             demon = cast.get_first_actor(DEMON_GROUP)
-        
-            attacks = [demon.action_1(), demon.action_2(), demon.action_3()]
+            is_player = False
+            attacks = [demon.action_1(is_player), demon.action_2(is_player), demon.action_3(is_player)]
             choose_attack = random.choice(attacks)
             self._attack = choose_attack
             adventurer.lose_hp(choose_attack) 
