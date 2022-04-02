@@ -136,4 +136,3 @@ class Character(Actor):
         """Removes one life."""
         if self._current_hp > 0:
             self._current_hp -= attack
-
