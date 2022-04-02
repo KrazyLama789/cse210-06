@@ -72,8 +72,12 @@ class SceneManager:
             self._prepare_combat(cast, script)
         elif scene == ADVENTURER_COMBAT:
             self._prepare_adventurer_combat(cast, script)
+        elif scene == ADVENTURER_ATTACK:
+            self._prepare_adventurer_attack(cast, script)
         elif scene == NPC_COMBAT:
             self._prepare_npc_combat(cast, script)
+        elif scene == NPC_ATTACK:
+            self._prepare_npc_attack(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
         # elif scene == TRY_AGAIN:
@@ -124,10 +128,13 @@ class SceneManager:
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_COMBAT_ACTION)
-        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 3))
         self._add_output_script(script)
         self.NPC_COMBAT_ACTION.reset_turn()
         print("Adventurer's turn:")
+        
+    def _prepare_adventurer_attack(self, cast, script):
+        print ("adv atk")
+        script.add_action(INPUT, TimedChangeSceneAction(NPC_COMBAT, 3))
         
     def _prepare_npc_combat(self, cast, script):
         cast.clear_actors(DIALOG_GROUP)
@@ -138,9 +145,12 @@ class SceneManager:
         script.clear_actions(INPUT)
         cast.clear_actors(DIALOG_GROUP)
         script.add_action(INPUT, self.NPC_COMBAT_ACTION)
-        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 3))
         self._add_output_script(script)
         print("Demon's turn")
+        
+    def _prepare_npc_attack(self, cast, script):
+        print ('npc atk')
+        script.add_action(INPUT, TimedChangeSceneAction(ADVENTURER_COMBAT, 3))
  
     def _prepare_game_over(self, cast, script):
         print ("game over")

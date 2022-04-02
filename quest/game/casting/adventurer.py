@@ -24,6 +24,8 @@ class Adventurer(Character):
             xp: A number representing the experience to add.
         """
         self._xp += xp
+        if self._xp >= self._level * 10:
+            self.level_up()
       
     def get_xp(self):
         """Gets the xp.

@@ -16,12 +16,15 @@ class ControlCombatAction(Action):
             print(f"Adventurer's attack: {adventurer.action_1()}")
             # sound = Sound(STAB_SOUND)
             # adventurer.audio_service.play_sound(sound)
+            callback.on_next(ADVENTURER_ATTACK)
 
         elif self._keyboard_service.is_key_pressed("2"): 
             demon.lose_hp(adventurer.action_2())
+            callback.on_next(ADVENTURER_ATTACK)
 
         elif self._keyboard_service.is_key_pressed("3"): 
             demon.lose_hp(adventurer.action_3())
+            callback.on_next(ADVENTURER_ATTACK)
  
         elif self._keyboard_service.is_key_pressed("4"): 
             cast.clear_actors(DEMON_GROUP)
@@ -29,5 +32,6 @@ class ControlCombatAction(Action):
             
         if demon.get_current_hp() <= 0:
             cast.clear_actors(DEMON_GROUP)
+            adventurer.add_xp(demon.get_level())
             callback.on_next(IN_PLAY)
 

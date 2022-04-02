@@ -21,6 +21,7 @@ class NpcCombatAction(Action):
             adventurer.lose_hp(choose_attack) 
             print(f"Demon's attack: {choose_attack}")
             self._turn_attack = 1
+            callback.on_next(NPC_ATTACK)
         
             if adventurer.get_current_hp() <= 0:
                 callback.on_next(GAME_OVER)
