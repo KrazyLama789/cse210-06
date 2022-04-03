@@ -108,7 +108,7 @@ class Character(Actor):
         return attack
 
     def action_r (self, is_player):
-        """What the character does when key 4 is pressed"""
+        """What the character does when key r is pressed"""
         self._rally_luck = self._rally_luck + 2
         attack = 0
         print(self._rally_luck)
@@ -146,5 +146,7 @@ class Character(Actor):
 
     def lose_hp(self, attack):
         """Removes one life."""
-        if self._current_hp > 0:
-            self._current_hp -= attack
+        # if self._current_hp > 0:
+        self._current_hp -= attack
+        if self._current_hp <0:
+            self._current_hp = 0
